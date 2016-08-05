@@ -1,0 +1,108 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <title>AIR-PORT-CODES.com API Request</title>
+    <meta name="description" content="How to make an AIR-PORT-CODES jQuery request.">
+    <meta name="author" content="Air-port-codes">
+
+    <style>
+        body {
+            font-family: Arial;
+        }
+        h4 {
+            margin-bottom: 3px;
+        }
+        form {
+            width: 300px;
+            display: inline-block;
+        }
+        pre {
+            width: 600px;
+            height: 500px;
+            background: black;
+            color: white;
+            padding: 10px;
+            overflow-y: auto;
+            margin-top: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <form id="countries-form">
+        <input id="apiKey" placeholder="API key" />
+        <button type="submit" id="key-button">Use Key</button>
+        <hr>
+        <label>Your country selected: 
+            <select id="countries"></select>
+        </label>
+    </form>
+    <h4>Response Object</h4>
+    <pre id="response"></pre>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js" type="text/javascript"></script>
+    <script src="../air-port-codes-api-min.js"></script>
+    <script>
+        $(function() {
+            var apiKey,
+                apccs,
+                apcc,
+                params = {
+                    is_select_options: true,
+                    autoselect_visitor_location: true,
+                    // selected: 'AU',
+                    // ip_address: '72.229.28.185'
+                };
+
+            $('#key-button').click(function (e) {
+                e.preventDefault();
+                apiKey = $('#apiKey').val();
+                params.key = apiKey;
+                delete apccs;
+                delete apcc;
+                initSelect();
+                initObj();
+            });
+
+            // COUNTRIES SELECT
+            function initSelect() {
+                apccs = new apc('countries', params);
+
+                apccs.onError = function (data) {
+                    console.log(data.message);
+                };
+                apccs.onSuccess = function (data) {
+                    console.log(data);
+                    $('select#countries').html(data.countries);
+                };
+                apccs.request();
+            }
+            
+            // COUNTRIES OBJECT
+            function initObj() {
+                apcc = new apc('countries', {key : apiKey});
+
+                apcc.onError = function (data) {
+                    console.log(data.message);
+                    showHumanReadableObject(data);
+                };
+                apcc.onSuccess = function (data) {
+                    console.log(data);
+                    showHumanReadableObject(data);
+                    // $('select#countries').html(data.countries);
+                };
+                apcc.request();
+
+                // make response show up in browser and look pretty
+                function showHumanReadableObject(data) {
+                    $('#response').html(JSON.stringify(data, null, 4));
+                }                
+            }
+        });
+            
+    </script>
+</body>
+</html>

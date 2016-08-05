@@ -1,0 +1,104 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+
+	<title>AIR-PORT-CODES.com API Request</title>
+	<meta name="description" content="How to make an AIR-PORT-CODES vanilla javascript request.">
+	<meta name="author" content="Air-port-codes">
+
+	<style>
+        body {
+            font-family: Arial;
+        }
+        h4 {
+            margin-bottom: 3px;
+        }
+		form {
+			width: 300px;
+			display: inline-block;
+		}
+		pre {
+			width: 600px;
+			height: 500px;
+			background: black;
+			color: white;
+			padding: 10px;
+			overflow-y: auto;
+		}
+	</style>
+</head>
+
+<body>
+	<label>Add your API Key: 
+	    <input id="apiKey" placeholder="API key" />
+    </label>
+    <hr>
+	<form id="multi-form">
+		<input type="text" name="term" id="term" placeholder="Airport search" />
+		<button type="submit">Multi Search</button>
+	</form>
+	<form id="single-form">
+		<input type="iata" name="iata" id="iata" placeholder="Enter airport code" />
+		<button type="submit">Single Search</button>
+	</form>
+    <h4>Response Object</h4>
+	<pre id="response"></pre>
+
+	<script src="../air-port-codes-api-min.js"></script>
+	<script>
+        var apcm, apcs;
+
+		// MULTI
+        function initMulti(apiKey) {
+            apcm = new apc('multi', {key : apiKey, limit: 7});
+            apcm.onError = function (data) {
+                console.log(data.message);
+                showHumanReadableObject(data);
+            };
+            apcm.onSuccess = function (data) {
+                console.log(data.airports);
+                showHumanReadableObject(data);
+            };            
+        }
+
+		document.querySelector("#multi-form").addEventListener("submit", function(e){
+	        e.preventDefault();    //stop form from submitting
+            delete apcm;
+	        var apiKey = document.getElementById('apiKey').value;
+            initMulti(apiKey);
+	        var term = document.getElementById('term').value;
+			apcm.request(term);
+		});
+
+
+		// SINGLE
+        function initSingle(apiKey) {
+            apcs = new apc('single', {key : apiKey, size: 3});
+            apcs.onError = function (data) {
+                console.log(data.message);
+                showHumanReadableObject(data);
+            };
+            apcs.onSuccess = function (data) {
+                console.log(data.airport);
+                showHumanReadableObject(data);
+            };            
+        }
+
+		document.querySelector("#single-form").addEventListener("submit", function(e){
+	        e.preventDefault();    //stop form from submitting
+            delete apcs;
+	        var apiKey = document.getElementById('apiKey').value;
+            initSingle(apiKey);
+	        var iata = document.getElementById('iata').value;
+			apcs.request(iata);
+		});
+
+        // make response show up in browser and look pretty
+        function showHumanReadableObject(data) {
+			document.getElementById('response').innerHTML = JSON.stringify(data, null, 4);
+        }
+	</script>
+</body>
+</html>

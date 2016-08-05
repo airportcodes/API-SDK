@@ -1,0 +1,90 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <title>AIR-PORT-CODES.com API Request</title>
+    <meta name="description" content="How to make an AIR-PORT-CODES jQueryUI autocomplete request.">
+    <meta name="author" content="Air-port-codes">
+
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+    <style>
+        form {
+            width: 300px;
+            display: inline-block;
+        }
+        form input {
+            font-size: 16px;
+            padding: 5px;
+            width: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <form>
+        <input id="apiKey" placeholder="API key" />
+        <button type="submit" id="key-button">Use Key</button>
+    </form>
+    <hr>
+    <form id="multi-form">
+        <input type="text" name="term" id="term" placeholder="City name or airport code" />
+    </form>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js" type="text/javascript"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="../air-port-codes-api-min.js"></script>
+    <script>
+        $(function() {
+            var apiKey,
+                apca,
+                params = { limit: 7 };
+
+            $('#key-button').click(function (e) {
+                e.preventDefault();
+                apiKey = $('#apiKey').val();
+                params.key = apiKey;
+                delete apca;
+                initAutoSelect();
+            });
+
+            function initAutoSelect() {
+                apca = new apc('multi', params);
+
+                var autocompleteObj = {
+                    source: function( request, response ) {
+                        // make the request
+                        apca.request( $('#term').val() );
+
+                        apca.onSuccess = function (data) {
+                            if (data.status) { // success
+                                response( $.map( data.airports, function( item ) {
+                                    return {
+                                        label: item.name + ' (' + item.iata + ')',
+                                        value: item.name + ' (' + item.iata + ')',
+                                        code: item.iata
+                                    }
+                                }));
+                            } else { // no results
+                                response();
+                            }
+                        };
+                        apca.onError = function (data) {
+                            response();
+                            console.log(data.message);
+                        };
+                    },
+                    select: function( event, ui ) {
+                        // do something for click event
+                        console.log(ui.item.code);
+                    }
+                }
+
+                $( "#term" ).autocomplete(autocompleteObj);                
+            }
+
+        });
+    </script>
+</body>
+</html>
