@@ -107,6 +107,10 @@ class apc {
         return json_decode($resp);        
     }
 
+    /**
+     * retrieves the webpage referrer
+     * @return string the referrer page url
+     */
     protected function get_page_url()
     {
         if (!$_SERVER["SERVER_NAME"]) {
