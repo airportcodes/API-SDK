@@ -8,6 +8,10 @@ The software development kit for Air-port-codes API
 2. Make a note of your API Key as you will need it for all requests to the API.
 3. Consult the language specific documentation inside each language specific directory.
 
+## Integration
+[Javascript](https://github.com/airportcodes/API-SDK/tree/master/javascript)
+[PHP](https://github.com/airportcodes/API-SDK/tree/master/php)
+
 ## Contributing
 
 1. Fork it!
