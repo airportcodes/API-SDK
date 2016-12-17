@@ -29,7 +29,7 @@
     </form>
     <hr>
     <form id="multi-form">
-        <input type="text" name="term" id="term" placeholder="City name or airport code" />
+        <input type="text" name="term" class="autocomplete" placeholder="City name or airport code" />
     </form>
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js" type="text/javascript"></script>
@@ -39,7 +39,7 @@
         $(function() {
             var apiKey,
                 apca,
-                params = { limit: 7 };
+                params = { limit: 10 };
 
             $('#key-button').click(function (e) {
                 e.preventDefault();
@@ -50,40 +50,68 @@
             });
 
             function initAutoSelect() {
-                apca = new apc('multi', params);
+                $( ".autocomplete" ).each(function () {
+                    var apca = new apc('autocomplete', params),
+                    autocompleteObj = {
+                        source: function( request, response ) {
+                            // make the request
+                            apca.request( request.term );
 
-                var autocompleteObj = {
-                    source: function( request, response ) {
-                        // make the request
-                        apca.request( $('#term').val() );
+                            // this builds each line of the autocomplete
+                            itemObj = function (airport, isChild) {
+                                var label;
+                                if (isChild) {
+                                    label = '&rdsh;' + airport.iata + ' - ' + airport.name;
+                                } else {
+                                    label = airport.city + ', ' + airport.state.abbr + ' (' + airport.iata + ' - ' + airport.name + ')';
+                                }
+                                return {
+                                    label: label,
+                                    value: airport.iata + ' - ' + airport.name,
+                                    code: airport.iata
+                                };
+                            };
 
-                        apca.onSuccess = function (data) {
-                            if (data.status) { // success
-                                response( $.map( data.airports, function( item ) {
-                                    return {
-                                        label: item.name + ' (' + item.iata + ')',
-                                        value: item.name + ' (' + item.iata + ')',
-                                        code: item.iata
+                            // this deals with the successful response data
+                            apca.onSuccess = function (data) {
+                                var listAry = [],
+                                    thisAirport;
+                                if (data.status) { // success
+                                    for (var i = 0, len = data.airports.length; i < len; i++) {
+                                        thisAirport = data.airports[i];
+                                        listAry.push(itemObj(thisAirport));
+                                        if (thisAirport.children) {
+                                            for (var j = 0, jLen = thisAirport.children.length; j < jLen; j++) {
+                                                listAry.push(itemObj(thisAirport.children[j], true));
+                                            }
+                                        }
                                     }
-                                }));
-                            } else { // no results
+                                    response(listAry);
+                                } else { // no results
+                                    response();
+                                }
+                            };
+                            apca.onError = function (data) {
                                 response();
-                            }
-                        };
-                        apca.onError = function (data) {
-                            response();
-                            console.log(data.message);
-                        };
-                    },
-                    select: function( event, ui ) {
-                        // do something for click event
-                        console.log(ui.item.code);
+                                console.log(data.message);
+                            };
+                        },
+                        select: function( event, ui ) {
+                            // do something for click event
+                            console.log(ui.item.code);
+                        }
                     }
-                }
 
-                $( "#term" ).autocomplete(autocompleteObj);                
-            }
+                    // this is necessary to allow html entities to display properly in the jqueryUI labels
+                    $(this).autocomplete(autocompleteObj).data("ui-autocomplete")._renderItem = function( ul, item) {
+                        return $( "<li></li>" )
+                                .data( "item.autocomplete", item )
+                                .append( $( "<a></a>" ).html( item.label ) )
+                                .appendTo( ul );               
+                    };
 
+                });
+            };
         });
     </script>
 </body>
