@@ -63,7 +63,14 @@
                                 if (isChild) {
                                     label = '&rdsh;' + airport.iata + ' - ' + airport.name;
                                 } else {
-                                    label = airport.city + ', ' + airport.state.abbr + ' (' + airport.iata + ' - ' + airport.name + ')';
+                                    label = airport.city;
+                                    if (airport.state.abbr) {
+                                        label += ', ' + airport.state.abbr;
+                                    }
+                                    if (airport.country.name && ['US'].indexOf(airport.country.iso) < 0) {
+                                        label += ', ' + airport.country.name;                            
+                                    }
+                                    label += ' (' + airport.iata + ' - ' + airport.name + ')';
                                 }
                                 return {
                                     label: label,
