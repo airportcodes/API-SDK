@@ -1,6 +1,6 @@
 # Air-port-codes API SDK
 
-The software development kit for accessing all 9000+ airport codes and airport data from Air-port-codes API data feed.
+The SDK for accessing all 9000+ airport codes and airport data from [Air-port-codes](https://www.air-port-codes.com) API data feed.
 
 ## Installation
 
