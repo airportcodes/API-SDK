@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta charset="utf-8"/>
+</head>
+<body>
+
+<h1 id="air-port-codesapisdk">Air-port-codes API SDK</h1>
+
+<p>The SDK for accessing all 9000+ airport codes and airport data from <a href="https://www.air-port-codes.com">Air-port-codes</a> API data feed.</p>
+
+<h2 id="installation">Installation</h2>
+
+<ol>
+<li>First login to your air-port-codes.com account and update your account settings by adding any domains that might need to access the API.</li>
+<li>Make a note of your API Key and your API Secret as you will need them for all requests to the API.</li>
+<li>Install the npm library</li>
+</ol>
+
+<pre><code>npm install air-port-codes-node
+</code></pre>
+
+<h2 id="integration">Integration</h2>
+
+<p>Consult the <a href="https://www.air-port-codes.com/airport-codes-api/overview/">documentation</a> for the appropriate config settings to use.</p>
+
+<p>Also, you can view the Ionic Angular example TypeScript file showing it in practice.</p>
+
+<pre><code>import { autocomplete } from 'air-port-codes-node';
+
+this.apca = autocomplete({
+	key : 'xxxxxxxxxxx', 
+	secret : 'xxxxxxxxxxxxxxx', // Your API Secret Key: use this if you are not connecting from a web server
+	limit : 15
+});
+</code></pre>
+
+<h2 id="license">License</h2>
+
+<p>MIT license | (c) 2016 AIR-PORT-CODES | Air-port-codes.com/legal/terms-of-use</p>
+
+</body>
+</html>
+

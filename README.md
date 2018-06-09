@@ -9,8 +9,9 @@ The SDK for accessing all 9000+ airport codes and airport data from [Air-port-co
 3. Consult the language specific documentation inside each language specific directory.
 
 ## Integration
-1. Client side: [Javascript](https://github.com/airportcodes/API-SDK/tree/master/javascript) 
-2. Server side: [PHP](https://github.com/airportcodes/API-SDK/tree/master/php)
+1. Node.js: [NPM Package](https://github.com/airportcodes/API-SDK/tree/master/javascript/node)
+2. Client side: [Javascript](https://github.com/airportcodes/API-SDK/tree/master/javascript) 
+3. Server side: [PHP](https://github.com/airportcodes/API-SDK/tree/master/php)
 
 ## Contributing
 
