@@ -44,6 +44,8 @@ this.apca.onError = (data) => {
 };
 ```
 
+## Ionic Angular Example Screenshot
+![Ionic Angular Example Screenshot](https://github.com/airportcodes/API-SDK/blob/master/javascript/examples/ionic-angular-autocomplete.png?raw=true)
 
 
 ## License
