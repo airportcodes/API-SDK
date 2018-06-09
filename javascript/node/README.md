@@ -15,7 +15,7 @@ npm install air-port-codes-node
 ## Integration
 Consult the [documentation](https://www.air-port-codes.com/airport-codes-api/overview/) for the appropriate config settings to use.
 
-Also, you can view the Ionic Angular example TypeScript file showing it in practice.
+Also, you can view the [Ionic Angular example](https://github.com/airportcodes/API-SDK/tree/master/javascript/examples) TypeScript file showing it in practice.
 ```
 import { autocomplete } from 'air-port-codes-node';
 
@@ -24,6 +24,24 @@ this.apca = autocomplete({
 	secret : 'xxxxxxxxxxxxxxx', // Your API Secret Key: use this if you are not connecting from a web server
 	limit : 15
 });
+```
+
+For each request, typically a key press you would make the api request
+```
+this.apca.request(term);
+```
+
+Then simply listen for the response
+```
+// SUCCESS we found some airports
+this.apca.onSuccess = (data) => {
+    console.log('data', data)
+};
+
+// FAIL no airports found
+this.apca.onError = (data) => {
+    console.log('onError', data.message);
+};
 ```
 
 

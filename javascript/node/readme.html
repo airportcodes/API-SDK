@@ -24,7 +24,7 @@
 
 <p>Consult the <a href="https://www.air-port-codes.com/airport-codes-api/overview/">documentation</a> for the appropriate config settings to use.</p>
 
-<p>Also, you can view the Ionic Angular example TypeScript file showing it in practice.</p>
+<p>Also, you can view the <a href="https://github.com/airportcodes/API-SDK/tree/master/javascript/examples">Ionic Angular example</a> TypeScript file showing it in practice.</p>
 
 <pre><code>import { autocomplete } from 'air-port-codes-node';
 
@@ -33,6 +33,24 @@ this.apca = autocomplete({
 	secret : 'xxxxxxxxxxxxxxx', // Your API Secret Key: use this if you are not connecting from a web server
 	limit : 15
 });
+</code></pre>
+
+<p>For each request, typically a key press you would make the api request</p>
+
+<pre><code>this.apca.request(term);
+</code></pre>
+
+<p>Then simply listen for the response</p>
+
+<pre><code>// SUCCESS we found some airports
+this.apca.onSuccess = (data) =&gt; {
+    console.log('data', data)
+};
+
+// FAIL no airports found
+this.apca.onError = (data) =&gt; {
+    console.log('onError', data.message);
+};
 </code></pre>
 
 <h2 id="license">License</h2>
