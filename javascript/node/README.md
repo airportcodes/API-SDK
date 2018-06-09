@@ -17,31 +17,32 @@ Need a PHP version? [Here you go](https://github.com/airportcodes/API-SDK/tree/m
 ## Integration
 Consult the [documentation](https://www.air-port-codes.com/airport-codes-api/overview/) for the appropriate config settings to use.
 
-Also, you can view the [Ionic Angular example](https://github.com/airportcodes/API-SDK/tree/master/javascript/examples) TypeScript file showing it in practice.
+Also, you can view the [Ionic Angular example](https://github.com/airportcodes/API-SDK/tree/master/javascript/examples) TypeScript file and other examples showing it in practice.
 ```
 import { autocomplete } from 'air-port-codes-node';
 
-this.apca = autocomplete({
+const apca = autocomplete({
 	key : 'xxxxxxxxxxx', 
 	secret : 'xxxxxxxxxxxxxxx', // Your API Secret Key: use this if you are not connecting from a web server
 	limit : 15
 });
 ```
 
-For each request, typically a key press you would make the api request
+Typically a key press would be used in an autocomplete form to make a new api request like this.
 ```
-this.apca.request(term);
+let term = 'new yo';
+apca.request(term);
 ```
 
 Then simply listen for the response
 ```
 // SUCCESS we found some airports
-this.apca.onSuccess = (data) => {
+apca.onSuccess = (data) => {
     console.log('data', data)
 };
 
 // FAIL no airports found
-this.apca.onError = (data) => {
+apca.onError = (data) => {
     console.log('onError', data.message);
 };
 ```
