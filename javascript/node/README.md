@@ -12,6 +12,8 @@ The SDK for accessing all 9000+ airport codes and airport data from [Air-port-co
 npm install air-port-codes-node
 ```
 
+Need a PHP version? [Here you go](https://github.com/airportcodes/API-SDK/tree/master/php).
+
 ## Integration
 Consult the [documentation](https://www.air-port-codes.com/airport-codes-api/overview/) for the appropriate config settings to use.
 
