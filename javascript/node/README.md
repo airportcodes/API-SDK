@@ -18,7 +18,7 @@ Need a **PHP** version? [Here you go](https://github.com/airportcodes/API-SDK/tr
 ## Integration
 Consult the [documentation](https://www.air-port-codes.com/airport-codes-api/overview/) for the appropriate config settings to use.
 
-Also, you can view the [Ionic Angular example](https://github.com/airportcodes/API-SDK/tree/master/javascript/examples) TypeScript file and other examples showing it in practice.
+Also, you can view the [Ionic Angular example code](https://github.com/airportcodes/API-SDK/tree/master/javascript/examples/ionic-angular-autocomplete) and [live demo](https://www.air-port-codes.com/demos/ionic/) showing the API in practice.
 ```
 import { autocomplete } from 'air-port-codes-node';
 
@@ -77,8 +77,9 @@ const apca = apcAutoComplete({
 ```
 
 ## Ionic Angular Example Screenshot
-![Ionic Angular Example Screenshot](https://github.com/airportcodes/API-SDK/blob/master/javascript/examples/ionic-angular-autocomplete.png?raw=true)
+**[View Live Demo](https://www.air-port-codes.com/demos/ionic/)**
 
+![Ionic Angular Example Screenshot](https://github.com/airportcodes/API-SDK/blob/master/javascript/examples/ionic-angular-autocomplete.png?raw=true)
 
 ## License
 
