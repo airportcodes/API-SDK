@@ -1,5 +1,6 @@
 # Air-port-codes API SDK
 
+
 The SDK for accessing all 9000+ airport codes and airport data from [Air-port-codes](https://www.air-port-codes.com) API data feed. Use the Air-port-codes service to help you quickly build an auto-complete form for your website or application.
 
 ## Installation
@@ -12,7 +13,7 @@ The SDK for accessing all 9000+ airport codes and airport data from [Air-port-co
 npm install air-port-codes-node
 ```
 
-Need a PHP version? [Here you go](https://github.com/airportcodes/API-SDK/tree/master/php).
+Need a **PHP** version? [Here you go](https://github.com/airportcodes/API-SDK/tree/master/php).
 
 ## Integration
 Consult the [documentation](https://www.air-port-codes.com/airport-codes-api/overview/) for the appropriate config settings to use.
@@ -45,6 +46,34 @@ apca.onSuccess = (data) => {
 apca.onError = (data) => {
     console.log('onError', data.message);
 };
+```
+Other [Air-port-codes API endpoints](https://www.air-port-codes.com/airport-codes-api/overview/) can easily be accessed as well.
+```
+// The easiest way to build an airport autocomplete field
+import { autocomplete } from 'air-port-codes-node';
+
+// Finds a list of airports matching search term
+import { multi } from 'air-port-codes-node';
+
+// Finds a single airport matching an airport IATA code
+import { single } from 'air-port-codes-node';
+
+Retrieves all countries and their ISO (2 character alpha)values
+import { countries } from 'air-port-codes-node';
+
+// Retrieves all districts (states/provinces) of any country in the world
+import { states } from 'air-port-codes-node';
+```
+
+You can also use an alias in your import to make using the library simpler to understand
+```
+import { autocomplete as apcAutoComplete } from 'air-port-codes-node';
+
+const apca = apcAutoComplete({
+	key : 'xxxxxxxxxxx', 
+	secret : 'xxxxxxxxxxxxxxx',
+	limit : 15
+});
 ```
 
 ## Ionic Angular Example Screenshot

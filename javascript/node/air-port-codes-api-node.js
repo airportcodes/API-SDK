@@ -2,10 +2,10 @@
 /* global ActiveXObject */
 
 /*! 
- * The main vanilla javascript library for accessing the Air-port-codes API
+ * The main ES6 vanilla javascript library for accessing the Air-port-codes API
  * 
  * @license MIT license
- * apc npm library v1.2.0 | (c) 2018 AIR-PORT-CODES | Air-port-codes.com/terms-of-use
+ * apc npm library v1.3.5 | (c) 2018 AIR-PORT-CODES | Air-port-codes.com/terms-of-use
  */
 
 /**

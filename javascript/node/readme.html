@@ -20,7 +20,7 @@
 <pre><code>npm install air-port-codes-node
 </code></pre>
 
-<p>Need a PHP version? <a href="https://github.com/airportcodes/API-SDK/tree/master/php">Here you go</a>.</p>
+<p>Need a <strong>PHP</strong> version? <a href="https://github.com/airportcodes/API-SDK/tree/master/php">Here you go</a>.</p>
 
 <h2 id="integration">Integration</h2>
 
@@ -54,6 +54,35 @@ apca.onSuccess = (data) =&gt; {
 apca.onError = (data) =&gt; {
     console.log('onError', data.message);
 };
+</code></pre>
+
+<p>Other <a href="https://www.air-port-codes.com/airport-codes-api/overview/">Air-port-codes API endpoints</a> can easily be accessed as well.</p>
+
+<pre><code>// The easiest way to build an airport autocomplete field
+import { autocomplete } from 'air-port-codes-node';
+
+// Finds a list of airports matching search term
+import { multi } from 'air-port-codes-node';
+
+// Finds a single airport matching an airport IATA code
+import { single } from 'air-port-codes-node';
+
+Retrieves all countries and their ISO (2 character alpha)values
+import { countries } from 'air-port-codes-node';
+
+// Retrieves all districts (states/provinces) of any country in the world
+import { states } from 'air-port-codes-node';
+</code></pre>
+
+<p>You can also use an alias in your import to make using the library simpler to understand</p>
+
+<pre><code>import { autocomplete as apcAutoComplete } from 'air-port-codes-node';
+
+const apca = apcAutoComplete({
+	key : 'xxxxxxxxxxx', 
+	secret : 'xxxxxxxxxxxxxxx',
+	limit : 15
+});
 </code></pre>
 
 <h2 id="ionicangularexamplescreenshot">Ionic Angular Example Screenshot</h2>
