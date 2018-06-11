@@ -17,7 +17,7 @@ export class AirportCodes {
     // see teh index.html for the included air-port-codes js library
     this.apca = autocomplete({
       key : 'xxxxxxxxxx', 
-      secret : 'xxxxxxxxxxxxxxx', // Your API Secret Key: use this if you are not connecting from a web server
+      secret : 'xxxxxxxxxxxxxxxx', // Your API Secret Key: use this if you are not connecting from a web server
       limit : 15
     });
   }

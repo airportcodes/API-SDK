@@ -1,0 +1,9 @@
+<ion-header>
+  <ion-searchbar (ionInput)="onNewSearchTerm($event)" placeholder="Search for an airport"></ion-searchbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <button ion-item *ngFor="let airport of airports" (click)="onSelectAirport(airport)" [innerHTML]="airport.label"></button>
+  </ion-list>
+</ion-content>
